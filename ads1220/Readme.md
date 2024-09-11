@@ -1,5 +1,6 @@
 # ADS1220
 
+# ADS1220 : Continuous DRDY
 
 ## Read data with continuous mode using DRDY
 
@@ -12,11 +13,25 @@ m_config_reg1 =
 			(0b0<<0);		// Current Source off
  ```
 ```cpp
- extern void drdy_callback(){
+i32 ads1220_read_continuous(){
+	u08 rx[3] = {0};
+	u08 tx[3] = {0};
+	i32 result = 0;
+	HAL_SPI_TransmitReceive(&hspi1, tx, rx, 3, 1000);
+    result = rx[0];
+    result = (result << 8) | rx[1];
+    result = (result << 8) | rx[2];
+    if (rx[0] & (1<<7)) {
+        result |= 0xFF000000;
+    }
+    return result;
+}
+
+extern void drdy_callback(){
 	led_toggle();
 	raw = ads1220_read_continuous();
 }
- ```
+```
 ![image info](./image/continuous.jpg)
 
 ![image info](./image/continuous_zoom.jpg)
@@ -32,3 +47,31 @@ m_config_reg1 =
 ![image info](./image/drdy_continuous_mode.jpg)
 
 ![image info](./image/drdy_continuous_mode_zoom.jpg)
+
+# ADS1220 : RDATA
+```cpp
+i32 ads1220_read_rdata(){
+	u08 rx[3] = {0};
+	u08 tx[1] = {RDATA};
+	i32 result = 0;
+	HAL_SPI_Transmit(&hspi1, tx, 1, 1000);
+	HAL_SPI_Receive(&hspi1, rx, 3, 1000);
+    result = rx[0];
+    result = (result << 8) | rx[1];
+    result = (result << 8) | rx[2];
+    if (rx[0] & (1<<7)) {
+        result |= 0xFF000000;
+    }
+    return result;
+}
+
+extern void tim_callback(){
+	led_on();
+	raw = ads1220_read_rdata();
+	led_off();
+}
+```
+
+![image info](./image/rdata_pulse.jpg)
+
+![image info](./image/rdata_pulse_zoom.jpg)
