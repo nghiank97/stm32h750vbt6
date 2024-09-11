@@ -1,14 +1,15 @@
 # ADS1220
 
-## DRDY pin in continuous mode with 1000SPS
+
+## Read data with continuous mode using DRDY
 
 ```cpp
 m_config_reg1 =
             (0b110<<5)|		// DR= 1000SPS
-            (0b00<<3)|		// Mode= Normal
-            (0b1<<2)|		// Conv mode=continuous
-            (0b0<<1)|		// Temp Sensor disabled
-            (0b0<<0);		// Current Source off
+    		(0b00<<3)|		// Mode= Normal
+			(0b1<<2)|		// Conv mode=continuous
+			(0b0<<1)|		// Temp Sensor disabled
+			(0b0<<0);		// Current Source off
  ```
 ```cpp
  extern void drdy_callback(){
@@ -22,3 +23,12 @@ m_config_reg1 =
 
 ![image info](./image/spi_oss.jpg)
 
+## Note 
+
+![image info](./image/note.jpg)
+
+## Initialize the continuous mode and don't read the data of ADS1220
+
+![image info](./image/drdy_continuous_mode.jpg)
+
+![image info](./image/drdy_continuous_mode_zoom.jpg)
