@@ -4,7 +4,7 @@
 extern void setup(void){
 }
 
-uint16_t adc_0 = 0;
+__IO uint16_t adc_0 = 0;
 uint16_t adc_1 = 0;
 
 extern void loop(void){
@@ -18,4 +18,3 @@ extern void loop(void){
 	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	HAL_Delay(500);
 }
-

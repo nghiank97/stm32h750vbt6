@@ -1,7 +1,10 @@
 #MicroXplorer Configuration settings - do not modify
 ADC1.Channel-2\#ChannelRegularConversion=ADC_CHANNEL_4
-ADC1.IPParameters=Rank-2\#ChannelRegularConversion,Channel-2\#ChannelRegularConversion,SingleDiff-2\#ChannelRegularConversion,SamplingTime-2\#ChannelRegularConversion,OffsetNumber-2\#ChannelRegularConversion,OffsetSignedSaturation-2\#ChannelRegularConversion,NbrOfConversionFlag,master,LeftBitShift
+ADC1.ClockPrescaler=ADC_CLOCK_ASYNC_DIV4
+ADC1.ConversionDataManagement=ADC_CONVERSIONDATA_DR
+ADC1.IPParameters=Rank-2\#ChannelRegularConversion,Channel-2\#ChannelRegularConversion,SingleDiff-2\#ChannelRegularConversion,SamplingTime-2\#ChannelRegularConversion,OffsetNumber-2\#ChannelRegularConversion,OffsetSignedSaturation-2\#ChannelRegularConversion,NbrOfConversionFlag,master,LeftBitShift,ClockPrescaler,NbrOfConversion,ConversionDataManagement
 ADC1.LeftBitShift=ADC_LEFTBITSHIFT_15
+ADC1.NbrOfConversion=1
 ADC1.NbrOfConversionFlag=1
 ADC1.OffsetNumber-2\#ChannelRegularConversion=ADC_OFFSET_NONE
 ADC1.OffsetSignedSaturation-2\#ChannelRegularConversion=DISABLE
